@@ -46,16 +46,16 @@
 
 
 #
-# los equipos tienen el formato: [  
+# los equipos tienen el formato: [
 #                                   ['Colombia',['jose1','manuel1','pepe1'],['jose2','manuel2','pepe2'],['jose3','manuel3','pepe3']]
-#                                 , ['Argentina',[jugadores] ,[medicos],[tecnicos],[]] 
-#                                 , ['Brazucas',[jugadores], [medicos],[tecnicos],[1,1,1,1]]  
+#                                 , ['Argentina',[jugadores] ,[medicos],[tecnicos],[]]
+#                                 , ['Brazucas',[jugadores], [medicos],[tecnicos],[1,1,1,1]]
 #                                ]
 # nombre[0], juagadores[1], tecnicos[2], medicos[3], fechas[4]
 # equipo = ['', juagadores, tecnicos, medicos, fechas]
 #
-
-equipo = ['', [],[],[],[]]
+grupo = []
+equipo = []
 equipos = []
 fecha = []
 
@@ -63,7 +63,7 @@ flag = True
 while flag:
     print("=== MENU ===")
     print("1. Registro de Equipo")
-    print("   1.1. Registro de Jugador(es)")
+    print("   1.1. Registro de Jugadores")
     print("   1.2. Registro Cuerpo técnico")
     print("   1.3. Registro Cuerpo medico")
     print("2. Registro de fecha")
@@ -86,16 +86,16 @@ while flag:
     if opc == '1.1':
         name = input(
             "Ingrese el nombre del equipo que al que registrara el jugador: ")
-
         for idx, sublist in enumerate(equipos):
             if sublist[0] == name:
                 jugador = []
                 jugadorName = input("Ingrese el nombre del jugador: ")
-                nroDorsal = int(input("Ingrese el dorsal de jugador en numero: "))
+                nroDorsal = int(
+                    input("Ingrese el dorsal de jugador en numero: "))
                 posicionJuego = input("Posicion que desempeña el jugador: ")
                 edad = int(input("Ingrese la edad del jugador: "))
                 jugador = [jugadorName, nroDorsal, posicionJuego, edad]
-                equipos[idx][1].append(jugador)
+                equipos[idx].append(jugador)
                 break
             else:
                 print("El equipo no fue encontrado, primero debe crear el equipo")
@@ -110,7 +110,7 @@ while flag:
                 cargo = input("Ingrese el cargo del tecnico: ")
                 edad = int(input("Ingrese la edad del tecnico: "))
                 tecnico = [tecnicoName, cargo, edad]
-                equipos[idx][2].append(tecnico)
+                equipos[idx].append(tecnico)
                 break
             else:
                 print("El equipo no fue encontrado, primero debe crear el equipo")
@@ -125,59 +125,70 @@ while flag:
                 cargo = input("Ingrese el cargo del tecnico: ")
                 edad = int(input("Ingrese la edad del tecnico: "))
                 tecnico = [tecnicoName, cargo, edad]
-                equipos[idx][2].append(tecnico)
+                equipos[idx].append(tecnico)
                 break
             else:
                 print("El equipo no fue encontrado, primero debe crear el equipo")
 
-    if opc == 2:
+    if opc == '2':
         name = input(
             "Ingrese el nombre del equipo que fue local en la fecha: ")
         for idx, sublist in enumerate(equipos):
+            equipoLocal = ''
             fechaLocal = []
             fechaVisitante = []
-            if sublist[0] == name:
-                ganadosV,ganadosL , perdidosV, perdidosL,  empateV,empateL = 0
-                #TODO: BUSCAR LA FORMA DE OPTIMIZAR, VALIDANDO QUE PRIMERO MIRE LOS RESULTADOS QUE YA TIENE Y LUEGO LOS USE
+            if sublist[idx] == name:
+                ganadosV, ganadosL, perdidosV, perdidosL,  empateV, empateL = 0, 0, 0, 0, 0, 0
+                # TODO: BUSCAR LA FORMA DE OPTIMIZAR, VALIDANDO QUE PRIMERO MIRE LOS RESULTADOS QUE YA TIENE Y LUEGO LOS USE
                 fechaJuego = input("Ingrese la fecha (DD-MM-AAAA): ")
                 equipoLocal = name
-                equipoVisitante = input("ingrese el nombre del equipo visitante: ")
-                
-                if(equipoLocal.lower != equipoVisitante.lower):
-                    marcadorV = int(input(f"Ingrese el marcador de visitante {equipoVisitante}"))
-                    marcadorL = int(input(f"Ingrese el marcador de local {equipoLocal}"))
-                    if(marcadorL > marcadorV):
+                equipoVisitante = input(
+                    "ingrese el nombre del equipo visitante: ")
+                if (equipoLocal.lower != equipoVisitante.lower):
+                    marcadorV = int(
+                        input(f"Ingrese el marcador de visitante {equipoVisitante}: "))
+                    marcadorL = int(
+                        input(f"Ingrese el marcador de local {equipoLocal}: "))
+                    if (marcadorL > marcadorV):
                         ganadosL += 1
                         perdidosV += 1
-                    if(marcadorV > marcadorL):
+                    if (marcadorV > marcadorL):
                         ganadosV += 1
                         perdidosL += 1
-                    if(marcadorL == marcadorV):
-                        empateV += 1   
-                        empateL += 1   
-                    fechaLocal = [ganadosL,perdidosL,empateL]
-                    equipos[idx][4].append(fechaLocal)
-                    fechaVisitante = [ganadosV,perdidosV,empateV]
+                    if (marcadorL == marcadorV):
+                        empateV += 1
+                        empateL += 1
+                    fechaLocal = [ganadosL, perdidosL, empateL]
+                    equipos[idx].append(fechaLocal)
+                    fechaVisitante = [ganadosV, perdidosV, empateV]
                 else:
                     print("Los equipos no pueden ser los mismos")
-                    
+
             if sublist[0].lower() == equipoLocal.lower():
-                equipos[idx][4].append(fechaVisitante)
+                equipos[idx].append(fechaVisitante)
             else:
                 print("El equipo no fue encontrado, primero debe crear el equipo")
 
     if opc == '3':
-        name = input("Ingrese el equipo del que desea ver las estadisticas")
-        for i in range(len(equipos)):
-            
-            for j in range(len(equipos[i])):
-                print(equipos[i][j], end='\n')
+        name = input("Ingrese el equipo del que desea ver las estadisticas: ")
+        for idx, sublist in enumerate(equipos):
+            if sublist[0] == name:
 
-    if opc == 4:
-        name = input("Ingrese el equipo del que desea ver las estadisticas")
-        for i in range(len(equipos)):
-            for j in range(len(equipos[i])):
-                print(equipos[i][j], end='\n')
+                for j in range(len(equipos[idx])):
+                    print(equipos[idx][j], end='\n')
+            else:
+                print("No se encontro el equipo, primero debe crearse")
+
+        print("|{:^5}{}{:^20}|".format('  ', 'TABLA DE PUNTUACIONES','  '))
+        print('+', '-'*50, '+')
+    if opc == '4':
+        name = input("Ingrese el equipo del que desea ver las estadisticas: ")
+        for idx, sublist in enumerate(equipos):
+            if sublist[0] == name:
+                for j in range(len(equipos[idx])):
+                    print(equipos[idx][j], end='\n')
+            else:
+                print("No se encontro el equipo, primero debe crearse")
 
     if opc == 5:
         pass
