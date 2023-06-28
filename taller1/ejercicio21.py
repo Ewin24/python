@@ -46,13 +46,18 @@
 
 
 #
-# los equipos tienen el formato: [  ['Colombia',['jose1','manuel1','pepe1'],['jose2','manuel2','pepe2'],['jose3','manuel3','pepe3']] , ['Argentina',[medicos],[tecnicos],[]] , ['Brazucas',[medicos],[tecnicos],[]]  ]
-# nombre[0], juagadores[1], tecnicos[2], medicos[3]
-# equipo = ['', juagadores, tecnicos, medicos]
+# los equipos tienen el formato: [  
+#                                   ['Colombia',['jose1','manuel1','pepe1'],['jose2','manuel2','pepe2'],['jose3','manuel3','pepe3']]
+#                                 , ['Argentina',[jugadores] ,[medicos],[tecnicos],[]] 
+#                                 , ['Brazucas',[jugadores], [medicos],[tecnicos],[1,1,1,1]]  
+#                                ]
+# nombre[0], juagadores[1], tecnicos[2], medicos[3], fechas[4]
+# equipo = ['', juagadores, tecnicos, medicos, fechas]
 #
 
-equipo = []
+equipo = ['', [],[],[],[]]
 equipos = []
+fecha = []
 
 flag = True
 while flag:
@@ -126,13 +131,53 @@ while flag:
                 print("El equipo no fue encontrado, primero debe crear el equipo")
 
     if opc == 2:
-        pass
+        name = input(
+            "Ingrese el nombre del equipo que fue local en la fecha: ")
+        for idx, sublist in enumerate(equipos):
+            fechaLocal = []
+            fechaVisitante = []
+            if sublist[0] == name:
+                ganadosV,ganadosL , perdidosV, perdidosL,  empateV,empateL = 0
+                #TODO: BUSCAR LA FORMA DE OPTIMIZAR, VALIDANDO QUE PRIMERO MIRE LOS RESULTADOS QUE YA TIENE Y LUEGO LOS USE
+                fechaJuego = input("Ingrese la fecha (DD-MM-AAAA): ")
+                equipoLocal = name
+                equipoVisitante = input("ingrese el nombre del equipo visitante: ")
+                
+                if(equipoLocal.lower != equipoVisitante.lower):
+                    marcadorV = int(input(f"Ingrese el marcador de visitante {equipoVisitante}"))
+                    marcadorL = int(input(f"Ingrese el marcador de local {equipoLocal}"))
+                    if(marcadorL > marcadorV):
+                        ganadosL += 1
+                        perdidosV += 1
+                    if(marcadorV > marcadorL):
+                        ganadosV += 1
+                        perdidosL += 1
+                    if(marcadorL == marcadorV):
+                        empateV += 1   
+                        empateL += 1   
+                    fechaLocal = [ganadosL,perdidosL,empateL]
+                    equipos[idx][4].append(fechaLocal)
+                    fechaVisitante = [ganadosV,perdidosV,empateV]
+                else:
+                    print("Los equipos no pueden ser los mismos")
+                    
+            if sublist[0].lower() == equipoLocal.lower():
+                equipos[idx][4].append(fechaVisitante)
+            else:
+                print("El equipo no fue encontrado, primero debe crear el equipo")
 
-    if opc == 3:
-        pass
+    if opc == '3':
+        name = input("Ingrese el equipo del que desea ver las estadisticas")
+        for i in range(len(equipos)):
+            
+            for j in range(len(equipos[i])):
+                print(equipos[i][j], end='\n')
 
     if opc == 4:
-        pass
+        name = input("Ingrese el equipo del que desea ver las estadisticas")
+        for i in range(len(equipos)):
+            for j in range(len(equipos[i])):
+                print(equipos[i][j], end='\n')
 
     if opc == 5:
         pass
