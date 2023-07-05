@@ -82,7 +82,7 @@ def addCustomer(clientes: dict):
             }
         }
         clientes.update(cliente)
-        #hacer pruebas del cliente
+        #TODO:hacer pruebas del cliente
 
 def addSales(prods:dict, sales:dict, customers:dict):
     #TODO: VER SI ES RENTABLE CREAR UNA SOLA LISTA DE CLIENTES, DE TAL MANERA QUE A LA HORA DE VENTA 
