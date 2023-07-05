@@ -17,7 +17,6 @@
 # 6. ver info de un producto
 # 7. ver info de todos los productos
 
-
 # producto = {
 # 	'codigo':
 # 	'nombre':
@@ -25,13 +24,16 @@
 # 	'max':
 # 	'estado':
 #   'proveedor' :['name']
-#   'compras' :[{
+# }
+
+#'compras' :{
 #       'nroCompra':
 #       'fechaCompra':
 #       'valorCompra':
 #       'cantidadCompra':
-#   }]
-#   'ventas' :[{
+#   }
+
+#'ventas' :{
 #       'NroFactura':
 #       'fechaVenta':
 #       'nroIdCliente':
@@ -41,20 +43,36 @@
 #           'codProducto':
 #           'cantidadVendida':
 #           'valorUnitario':
-#         }
-#     }]
+#        }
 # }
+#'ventas' :{
+#       'NroFactura':
+#       'fechaVenta':
+#       'nroIdCliente':
+#       'nombreCliente':
+#       'totalFactura':
+#       'detalleVenta': {
+#           'codProducto':
+#           'cantidadVendida':
+#           'valorUnitario':
+#        }
+# }
+
+
 
 
 import funciones as funciones
 import os
 if __name__ == "__main__":
     products = {}
+    shopping = {}
+    sales = {}
+    customers = {}
     flag = True
     opc = 0
     while flag:
         os.system("clear")
-        print("1.Registrar producto\n2.Proveedores de productos\n3.Compras de producto\n4.Ventas de producto\n5.Actualizar\n6.ver un producto\n7.ver todos los productos")
+        print("1.Registrar producto\n2.Proveedores de productos\n3.Compras de producto\n4.Ventas de producto\n5.Agregar un cliente\n6.Ver un producto\n7.ver todos los productos")
         try:
             opc = int(input(":) "))
             if (opc == 1):
@@ -63,15 +81,15 @@ if __name__ == "__main__":
                 os.system("clear")
                 funciones.addProv(products)
             elif (opc == 3):
-                funciones.addBuy(products)
+                funciones.addBuy(products,shopping)
             elif (opc == 4):
-                funciones.AddCT(products)
+                funciones.addSales(products,sales,customers)
             elif (opc == 5):
-                funciones.AddMedico(products)
+                funciones.addCustomer(customers)
             elif (opc == 6):
                 funciones.showProduct(products)
             elif (opc == 7):
-                funciones.showProducts(products)
+                funciones.showProducts(products, sales, shopping)
         except Exception:
             print("No se reconoce el tipo de dato del valor ingresado")
         flag = bool(input("Desea continuar en el programa S(Si) o Enter(No) :"))
