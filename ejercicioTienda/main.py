@@ -45,17 +45,9 @@
 #           'valorUnitario':
 #        }
 # }
-#'ventas' :{
-#       'NroFactura':
-#       'fechaVenta':
-#       'nroIdCliente':
-#       'nombreCliente':
-#       'totalFactura':
-#       'detalleVenta': {
-#           'codProducto':
-#           'cantidadVendida':
-#           'valorUnitario':
-#        }
+#'clientes' :{
+#       'codigo':
+#       'nombre':
 # }
 
 
@@ -89,7 +81,7 @@ if __name__ == "__main__":
             elif (opc == 6):
                 funciones.showProduct(products)
             elif (opc == 7):
-                funciones.showProducts(products, sales, shopping)
+                funciones.showAll(products, sales, shopping, customers)
         except Exception:
             print("No se reconoce el tipo de dato del valor ingresado")
         flag = bool(input("Desea continuar en el programa S(Si) o Enter(No) :"))

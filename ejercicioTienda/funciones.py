@@ -1,4 +1,7 @@
 import os
+import random
+import datetime
+
 def addProduct(prods : dict):
     os.system("clear")
     codProduct = input("Ingrese el Cod del producto:").upper()
@@ -11,7 +14,8 @@ def addProduct(prods : dict):
                 "productName": input("Ingrese el nombre del producto: ").upper(),
                 'prodMins': int(input("Ingrese la cantidad minima disponible de producto: ")),
                 'prodMax': int(input("Ingrese la cantidad maxima disponible de producto: ")),
-                'estado': int(input("Ingrese el estado (1: disponible,  2: no disponible): "))
+                'state': int(input("Ingrese el estado (1: disponible,  2: no disponible): ")),
+                'unitValue': float(input("Ingrese el valor unitario del producto: "))
             }
         }
 
@@ -87,7 +91,51 @@ def addCustomer(clientes: dict):
 def addSales(prods:dict, sales:dict, customers:dict):
     #TODO: VER SI ES RENTABLE CREAR UNA SOLA LISTA DE CLIENTES, DE TAL MANERA QUE A LA HORA DE VENTA 
     #SOLO SEA RELACIONAR DATOS DE CLIENTE Y PRODUCTO, Y LUEGO AGREGAR LOS DATOS EXTRA DE VENTA
-    pass
+    flag = True
+    totalFactura = 0
+    prodFact = []
+    if(not flag):
+        for i, prod in enumerate(prodFact):#AQUI PODRIA MODIFICAR PARA MOSTRAR NOMBRES U OTROS DATOS DEL PROD
+            print(f"#    CODIGO    CANTIDAD    PRECIO")
+            print(f"{i+1}.   {prod['codProd']}   {prod['prodAmount']}   {prod['unitValue']}")
+        print(f"TOTAL DE LA FACTURA ==   {totalFactura}")
+    while(flag):
+        try:
+            print("-----REGISTRO DE VENTA-----")
+            customerId = input("Ingrese el codigo del cliente: ")
+            if(customers.get(customerId,False)):
+                customerName = customers[customerId]['nombre']
+                prodId = input("Ingrese el codigo del producto: ")
+                if(prods.get(prodId,False)): 
+                    nInvoice = random.randint(1,100000) #id random para facturas
+                    sellDate = datetime.today() #fecha actual venta
+                    unitValue = prods[prodId]['initValue'] #valor prdo
+                    prodAmount = int(input("Ingrese la cantidad de productos que vendió: ")) #prod comprado
+                    if(prodAmount > prods[prodId]['prodMax'] or prodAmount > prods[prodId]['prodMin'] and prodAmount > 0):
+                        #contruccion de factura
+                        prods[prodId]['prodMax'] -= prodAmount
+                        
+                        detalleFact = {
+                            'codProd': prodId,
+                            'prodAmount' : prodAmount,
+                            'unitValue': unitValue 
+                        }
+                        prodFact.append(detalleFact)
+                        totalFactura += unitValue * prodAmount
+                        
+                    else:
+                        print("No puede comprar menos de un producto, tampoco puede comprar mas de la cantidad stock de bodega")    
+                else:
+                    print("Producto no encontrado, ingrese uno.")
+                    addProduct()
+            else:
+                print("Cliente no envontrado, ingresa un nuevo cliente.")
+                addCustomer()
+            
+        except Exception as e:
+            print("La exepcion del error es: " + e)
+        else:
+            flag = bool(input("Desea agregar otra venta S(si) y Enter(No)"))
       
 
 def DeletePlayer(equipos : dict):
@@ -126,11 +174,12 @@ def EditarTeam(equipos : dict):
     print(equipos)     
     os.system("pause")    
 
-def showProducts(prods : dict, sales:dict, shopping:dict):
+def showAll(prods : dict, sales:dict, shopping:dict, customers: dict):
     if (prods):
         print(prods)
         print(sales)
         print(shopping)
+        print(customers)
     else:
         print("No registros en nuestra base de datos")
 
