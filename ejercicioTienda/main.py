@@ -1,5 +1,5 @@
-# Construir un programa en Python que permita llevar el control del inventario de una ferretería. 
-#La información
+# Construir un programa en Python que permita llevar el control del inventario de una ferretería.
+# La información
 # Que la ferreteria maneja de cada producto es la siguiente:
 
 # 1. Codigo del producto
@@ -19,11 +19,11 @@
 
 
 # producto = {
-# 	'codigo': 
-# 	'nombre': 
-# 	'mins': 
-# 	'max': 
-# 	'estado': 
+# 	'codigo':
+# 	'nombre':
+# 	'mins':
+# 	'max':
+# 	'estado':
 #   'proveedor' :['name']
 #   'compras' :[{
 #       'nroCompra':
@@ -49,7 +49,7 @@
 import funciones as funciones
 import os
 if __name__ == "__main__":
-    products={}
+    products = {}
     flag = True
     opc = 0
     while flag:
@@ -61,9 +61,9 @@ if __name__ == "__main__":
                 funciones.addProduct(products)
             elif (opc == 2):
                 os.system("clear")
-                funciones.showProducts(products)
-            elif (opc == 3):
                 funciones.addProv(products)
+            elif (opc == 3):
+                funciones.addBuy(products)
             elif (opc == 4):
                 funciones.AddCT(products)
             elif (opc == 5):
@@ -74,4 +74,4 @@ if __name__ == "__main__":
                 funciones.showProducts(products)
         except Exception:
             print("No se reconoce el tipo de dato del valor ingresado")
-        flag= bool(input("Desea continuar en el programa S(Si) o Enter(No) :"))
+        flag = bool(input("Desea continuar en el programa S(Si) o Enter(No) :"))

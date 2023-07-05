@@ -32,47 +32,35 @@ def addProv(prods : dict):
             except Exception as e:
                     print(f"Error: {e}")
             else:
-                isAddPlayer = bool(input("Desea agregar otro proveedor S(si) y Enter(No)"))
+                flag = bool(input("Desea agregar otro proveedor S(si) y Enter(No)"))
     else:
-        print("El producto no esta registrado")
-        
+        print("El producto no esta registrado")       
     
-def AddCT(equipos : dict):
-    isAddCt = True
-    equipo = equipos.get(input("Ingrese el codigo del equipo:").upper(),-1)
-    if (equipo == -1):
-        print("El equipo no esta registrado")
-    else:
-        while isAddCt:
-            cargo = ["Director tecnico","Asistente Tecnico","Entrenador De Arquero","Entrenador"]
-            if ((equipo.get("ct",-1) == -1)):
-                codigo = str(1).zfill(3) 
-            else:
-                codigo = str(len(equipo["ct"])+1).zfill(3)
-            nombreTecnico = input("Ingrese el nombre del tecnico : ")
-            edadTecnico =int(input("Ingrese Edad tecnico: "))
-            print("Seleccione el cargo del experto")
-            for i,pos in enumerate(cargo):
-                print(f"{i+1}. {pos}")
-            cargoTecnico =cargo[int(input())-1]
-            ct = {
-                codigo:{
-                "codigo" : codigo,
-                "nombreTecnico" : nombreTecnico,
-                "edadTecnico" : edadTecnico,
-                "cargoTecnico" : cargoTecnico
-                }
-            }
-            try:
-                rta = equipo.get("ct",-1)
-                if rta == -1:
-                    equipo.update({"ct":ct})
+# 3. Compras : El programa debe permitir controlar las compras de los productos. La información que se
+# maneja en las compras es: Nro documento de compra, fecha de compra. Valor compra,cantidad comprada.
+def addBuy(prods : dict):
+        flag = True
+        while flag:
+            prod = prods.get(input("Ingrese el codigo producto que compro: ").upper(),False)
+            if prod:
+                try:
+                    print(" -- Producto ya axiste, se hacen actualizaciones de datos -- ")
+                    codigo = input("Ingrese el nombre de su proveedor: ")
+                    provName = input("Ingrese el nombre de su proveedor: ")
+                    provName = input("Ingrese el nombre de su proveedor: ")
+                    provName = input("Ingrese el nombre de su proveedor: ")
+                    if(prod.get("proveedores",False)):
+                        prod["proveedores"].append(provName)
+                    else:
+                        prod.update({'proveedores': []})
+                        prod["proveedores"].append(provName)            
+                except Exception as e:
+                        print(f"Error: {e}")
                 else:
-                    equipo["ct"].update(ct)            
-            except Exception as e:
-                    print(f"Error: {e}")
+                    flag = bool(input("Desea agregar otro proveedor S(si) y Enter(No)"))
             else:
-                isAddCt = bool(input("Desea agregar otro Jugador S(si) y Enter(No)"))
+                print("El producto no esta registrado")       
+    
 
 def DeletePlayer(equipos : dict):
     equipo = equipos.get(input("Ingrese el codigo del equipo a eliminar:").upper(),-1)
@@ -109,7 +97,6 @@ def EditarTeam(equipos : dict):
     equipos.update(equipo)
     print(equipos)     
     os.system("pause")    
-
 
 def showProducts(prods : dict):
     if (prods):
