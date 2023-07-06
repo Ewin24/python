@@ -4,6 +4,9 @@ import os
 dicCliente = {'data': []}
 
 def mainMenu():
+    #validar que este creado json para data
+    if (core.checkFile("clientes.json") == False):
+            core.crearInfo("clientes.json",dicCliente)
     os.system("clear")
     isCliRun = True
 
@@ -23,9 +26,10 @@ def mainMenu():
             "nombre": input("Ingrese el Nombre del cliente: "),
             "email": input("Ingrese el Email del cliente: ")
         }
-        if (core.checkFile("clientes.json") == False):
-            dicCliente["data"].append()
-        core.crearInfo("clientes.json",data)
+        if (core.checkFile("clientes.json")):
+            #dicCliente["data"].append(data)
+            core.crearInfo("clientes.json", data)
+            
     elif (opcion == 2):
         pass
     elif (opcion == 3):
