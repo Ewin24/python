@@ -1,6 +1,6 @@
 import json
 import os
-def crearInfo(args : tuple):
+def crearInfo(*args):
     if(checkFile(args[0]) == False):
         with open('data/'+args[0], "w") as write_file:
                 json.dump(args[1], write_file,indent = 4)
@@ -16,7 +16,7 @@ def crearInfo(args : tuple):
             # convert back to json.
             json.dump(file_data, file, indent = 4)
             file.close()
-def LoadInfo(fileName):
+def loadInfo(fileName):
         if(checkFile(fileName) == True):
             with open('data/'+fileName, "r") as read_file:
                 dicc = json.load(read_file)
