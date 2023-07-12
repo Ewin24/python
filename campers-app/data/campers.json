@@ -1,0 +1,55 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "nombre": "1",
+            "apellidos": "1",
+            "edad": 1,
+            "correo": "1",
+            "ciudad": "1",
+            "estadoC": "1",
+            "genero": "1",
+            "nroTelefono": "1",
+            "acudiente": {
+                "idA": 1,
+                "nombreA": 1,
+                "apellidoA": 1,
+                "parentescoA": 1
+            }
+        },
+        {
+            "id": 2,
+            "nombre": "2",
+            "apellidos": "2",
+            "edad": 2,
+            "correo": "2",
+            "ciudad": "2",
+            "estadoC": "2",
+            "genero": "2",
+            "nroTelefono": "2",
+            "acudiente": {
+                "idA": 22,
+                "nombreA": 2,
+                "apellidoA": 2,
+                "parentescoA": 2
+            }
+        },
+        {
+            "id": 1,
+            "nombre": "21",
+            "apellidos": "1",
+            "edad": 1,
+            "correo": "1",
+            "ciudad": "1",
+            "estadoC": "1",
+            "genero": "1",
+            "nroTelefono": "1",
+            "acudiente": {
+                "idA": 1,
+                "nombreA": 1,
+                "apellidoA": 1,
+                "parentescoA": 1
+            }
+        }
+    ]
+}
