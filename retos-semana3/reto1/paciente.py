@@ -44,15 +44,16 @@ def addPaciente():
         paciente.update({'tipo': tipo})
 
         print("Seleccione la raza: ")
-        razas = core.listRaza(tipos[tipo-1], )
+        razas = core.listRaza(tipos[tipo-1], 'tipoAnimal.json')
         for k, item2 in enumerate(razas):
             print(f"{k + 1 }. {item2}")
         raza = int(input(":)_ "))
         if (raza in range(1, (len(razas)) + 1)):
             paciente.update({'raza': raza})
-            
-    
-
-
+            core.create('pacientes.json', paciente)
+        else:
+            print("La raza no fue encontrada")
+    else:
+        print("No se encontro su tipo de animal")
     # en caso de agregar mas animales y tipos en el json
     # se debe optimizar este codigo para buscar de forma mas facil

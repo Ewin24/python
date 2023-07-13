@@ -1,0 +1,12 @@
+{
+    "pacientes": [
+        {
+            "id": "",
+            "nombre": "1",
+            "edad": 1,
+            "propietario": 1,
+            "tipo": 1,
+            "raza": 1
+        }
+    ]
+}
