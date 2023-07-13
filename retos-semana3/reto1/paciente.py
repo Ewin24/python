@@ -17,11 +17,11 @@ def menu():
         if opc == 1:
             addPaciente()
         if opc == 2:
-            flag = True
+            core.delete("pacientes")
         if opc == 3:
             flag = True
         if opc == 4:
-            flag = True
+            core.listAll("pacientes")
         if opc == 5:
             flag = False
 
@@ -50,7 +50,9 @@ def addPaciente():
         raza = int(input(":)_ "))
         if (raza in range(1, (len(razas)) + 1)):
             paciente.update({'raza': raza})
+            
+    
 
 
-    # TODO: en caso de agregar mas animales y tipos en el json
+    # en caso de agregar mas animales y tipos en el json
     # se debe optimizar este codigo para buscar de forma mas facil
