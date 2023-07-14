@@ -19,7 +19,7 @@ def menu():
         if opc == 2:
             core.delete("pacientes.json")
         if opc == 3:
-            flag = True
+            core.listId("pacientes.json")
         if opc == 4:
             core.listAll("pacientes.json")
         if opc == 5:

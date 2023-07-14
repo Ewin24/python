@@ -1,0 +1,16 @@
+{
+    "veterinarios": [
+        {
+            "id": "1",
+            "nombre": "1",
+            "especialidad": 1,
+            "telefono": 1
+        },
+        {
+            "id": "2",
+            "nombre": "2",
+            "especialidad": 2,
+            "telefono": 2
+        }
+    ]
+}

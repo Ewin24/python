@@ -15,12 +15,29 @@ def menu():
         opc = int(input(":)_ "))
 
         if opc == 1:
-            flag = True
+            addVaterinario()
         if opc == 2:
-            flag = True
+            core.delete("veterinarios.json")
         if opc == 3:
-            flag = True
+            core.listId("veterinarios.json")
         if opc == 4:
-            flag = True
+            core.listAll("veterinarios.json")
         if opc == 5:
             flag = False
+
+
+def addVaterinario():
+    veterinario = {}
+    idValid = core.checkId('veterinarios.json')
+    if idValid != False:
+        print("----AGREGAR VETERINARIOS----")
+        veterinario = {
+            'id': idValid,
+            'nombre': input("Ingrese nombre del veterinario: "),
+            'especialidad': int(input("Ingrese especialidad del veterinario: ")),
+            'telefono': int(input("Ingrese telefono del veterinario: "))
+        }
+        core.create('veterinarios.json', veterinario)
+
+    else:
+        print("El id ya se encuentra registrado")

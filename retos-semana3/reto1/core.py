@@ -29,7 +29,7 @@ def create(filename, data: dict):
     if (checkFile(filename)):
         # cargamos los nuevos datos a los que ya estan
         fileExist = loadFile(filename)
-        fileExist['pacientes'].append(data)
+        fileExist[filename[0:-5]].append(data)
         # volvemos a subir los datos antiguos con actualizacion
         file = open('data/'+filename, 'w')
         jsonObj = json.dumps(fileExist, indent=4)
@@ -58,7 +58,8 @@ def delete(filename):
                 if (bool("Confirmar la eliminacion (Enter) cancelar, (S) confirmar: ")):
                     dataFile[filename[0:-5]].pop(i)
                     file = open('data/'+filename, 'w')
-                    jsonObj = json.dumps({filename[0:-5]: dataFile[filename[0:-5]]}, indent=4)
+                    jsonObj = json.dumps(
+                        {filename[0:-5]: dataFile[filename[0:-5]]}, indent=4)
                     file.write(jsonObj)
                     file.close()
                 else:
@@ -67,7 +68,6 @@ def delete(filename):
                 print(f"Busqueda fallida en: {filename[0:-6]}")
     else:
         print("No se tienen registros aun, no es posible hacer una eliminacion")
-    # TODO: HAY QUE TERMINAR LA FUNCION, HAY UN ERROR EN COMO SE ELIMINA EL OBJ EN EL JSON (solved)
 
 
 def update():
@@ -80,8 +80,15 @@ def listAll(filename):
     # TODO: HACER QUE CADA REGISTRO SE DIVIDA DE MANERA CORRECTA Y QUEDE ORDENADO EN UNA TABLA
 
 
-def listById():
-    pass
+def listId(filename):
+    dataFile = loadFile(filename)
+    id = input(f"Inserte el id de {filename[0:-6]}: ")
+    for i, item in enumerate(dataFile[filename[0:-5]]):
+        if id in (item['id']):
+            print(dataFile[filename[0:-5]][i])
+            os.system('pause')
+        else:
+            print(f"Busqueda fallida en: {filename[0:-6]}")
 
 
 def listRaza(tipo, filename):
