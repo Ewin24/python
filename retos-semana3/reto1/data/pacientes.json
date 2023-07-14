@@ -1,12 +1,20 @@
 {
     "pacientes": [
         {
-            "id": "",
+            "id": "1",
             "nombre": "1",
             "edad": 1,
             "propietario": 1,
             "tipo": 1,
             "raza": 1
+        },
+        {
+            "id": "3",
+            "nombre": "3",
+            "edad": 3,
+            "propietario": 3,
+            "tipo": 3,
+            "raza": 3
         }
     ]
 }
