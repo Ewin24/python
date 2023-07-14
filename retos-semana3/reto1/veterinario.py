@@ -8,7 +8,7 @@ def menu():
         os.system("clear")
         print("----ADMINISTRACION DE VETERINARIOS----")
         print("1. Agregar veterinario")
-        print("2. Editar veterinario")
+        print("2. Eliminar veterinario")
         print("3. Buscar veterinario")
         print("4. Mostrar veterinarios")
         print("5. Regresar")
@@ -34,7 +34,7 @@ def addVaterinario():
         veterinario = {
             'id': idValid,
             'nombre': input("Ingrese nombre del veterinario: "),
-            'especialidad': int(input("Ingrese especialidad del veterinario: ")),
+            'especialidad': input("Ingrese especialidad del veterinario: "),
             'telefono': int(input("Ingrese telefono del veterinario: "))
         }
         core.create('veterinarios.json', veterinario)

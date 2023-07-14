@@ -4,9 +4,10 @@ import cita
 import veterinario
 
 if __name__ == "__main__":
-    try:
-        flag = True
-        while (flag):
+
+    flag = True
+    while (flag):
+        try:
             os.system("clear")
             print("----ADMINISTRACION DEL CENTRO VETERINARIO----")
             print("1. Gestion de pacientes")
@@ -22,5 +23,5 @@ if __name__ == "__main__":
                 cita.menu()
             if opc == 4:
                 flag = False
-    except Exception as e:
-        print(e)
+        except Exception as e:
+            print(e)

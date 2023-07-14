@@ -11,6 +11,12 @@
             "nombre": "2",
             "especialidad": 2,
             "telefono": 2
+        },
+        {
+            "id": "3",
+            "nombre": "3",
+            "especialidad": 3,
+            "telefono": 3
         }
     ]
 }

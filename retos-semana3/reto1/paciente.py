@@ -27,7 +27,6 @@ def menu():
 
 
 def addPaciente():
-    paciente = {}
     idValid = core.checkId('pacientes.json')
     if idValid != False:
         print("----AGREGAR PACIENTES----")
@@ -59,5 +58,3 @@ def addPaciente():
             print("No se encontro su tipo de animal")
         # en caso de agregar mas animales y tipos en el json
         # se debe optimizar este codigo para buscar de forma mas facil
-    else:
-        print("El id ya se encuentra registrado")

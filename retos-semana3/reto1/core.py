@@ -22,6 +22,12 @@ listRaza, listTipo:
 Funcionan unicamente con pacientes, son genericos, por lo que
 van a funcionar con cualquier modificacion den el tipoAnimal.json
 -----------------------------------------------------------------
+input():
+
+se usan para frenar programa, 
+en windows se puede usar: os.system('pause')
+en linux se puede usar: time.sleep()
+-----------------------------------------------------------------
 '''
 
 
@@ -75,8 +81,16 @@ def update():
 
 
 def listAll(filename):
-    dataFile = loadFile(filename)
-    print(dataFile)
+
+    if (checkFile(filename)):
+        dataFile = loadFile(filename)
+        for i, item in enumerate(dataFile[filename[0:-5]]):
+            print(f"{'Id': <10}{'Nombre': <15}")
+            print(f"{item['id']:<10}{item['nombre']}")
+            print(f"----------------")
+        input()
+    else:
+        print(f"No se encontraron {filename[0:-5]}")
     # TODO: HACER QUE CADA REGISTRO SE DIVIDA DE MANERA CORRECTA Y QUEDE ORDENADO EN UNA TABLA
 
 
@@ -86,7 +100,7 @@ def listId(filename):
     for i, item in enumerate(dataFile[filename[0:-5]]):
         if id in (item['id']):
             print(dataFile[filename[0:-5]][i])
-            os.system('pause')
+            input()
         else:
             print(f"Busqueda fallida en: {filename[0:-6]}")
 
@@ -120,17 +134,15 @@ def checkFile(fileName):
 
 
 def checkId(filename):
-    bandera = ''
+    ids = []
     if (checkFile(filename)):
         file = loadFile(filename)
         id = input(f"Ingrese el id del {filename[0:-6]}: ")
         for i, item in enumerate(file[filename[0:-5]]):
-            if id in (item['id']):
-                bandera = False
-            else:
-                bandera = id
-        return bandera
-    else:
-        id = input(f"Ingrese el id del {filename[0:-6]}: ")
-        bandera = id
-        return bandera
+            ids.append(item['id'])
+        if id in ids:
+            print(f"El id: {id} ya se encuentra registrado")
+            input()
+            return False
+        else:
+            return id

@@ -15,6 +15,38 @@
             "propietario": 3,
             "tipo": 3,
             "raza": 3
+        },
+        {
+            "id": "2",
+            "nombre": "2",
+            "edad": 2,
+            "propietario": 2,
+            "tipo": 2,
+            "raza": 2
+        },
+        {
+            "id": "5",
+            "nombre": "2",
+            "edad": 2,
+            "propietario": 2,
+            "tipo": 1,
+            "raza": 2
+        },
+        {
+            "id": "4",
+            "nombre": "3",
+            "edad": 3,
+            "propietario": 3,
+            "tipo": 3,
+            "raza": 3
+        },
+        {
+            "id": "6",
+            "nombre": "6",
+            "edad": 6,
+            "propietario": 6,
+            "tipo": 4,
+            "raza": 2
         }
     ]
 }
