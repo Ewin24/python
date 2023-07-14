@@ -1,2 +1,2 @@
 # python
-repositorio para arender python
+repositorio para python

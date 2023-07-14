@@ -1,0 +1,30 @@
+{
+    "perro": {
+        "razas": [
+            "terrier",
+            "bulldog",
+            "pincher"
+        ]
+    },
+    "gato": {
+        "razas": [
+            "egipcio",
+            "siames",
+            "abisinio"
+        ]
+    },
+    "reptil": {
+        "razas": [
+            "lagarto",
+            "iguana",
+            "coral"
+        ]
+    },
+    "ave": {
+        "razas": [
+            "gallina",
+            "pavo",
+            "gansos"
+        ]
+    }
+}
