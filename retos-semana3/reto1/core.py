@@ -51,6 +51,7 @@ def create(filename, data: dict):
 def loadFile(filename):
     file = open('data/'+filename)
     data = json.load(file)
+    file.close()
     return data
 
 
@@ -91,7 +92,6 @@ def listAll(filename):
         input()
     else:
         print(f"No se encontraron {filename[0:-5]}")
-    # TODO: HACER QUE CADA REGISTRO SE DIVIDA DE MANERA CORRECTA Y QUEDE ORDENADO EN UNA TABLA
 
 
 def listId(filename):
